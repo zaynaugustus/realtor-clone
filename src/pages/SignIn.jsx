@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Img from "../components/Img";
 import { BiShow, BiHide } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import OAuth from "../components/OAuth";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const SignIn = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -15,14 +19,28 @@ const SignIn = () => {
   const { email, password } = formData;
 
   const handleChange = (e) => {
-    console.log(e.target.id);
     setFormData((prevFormData) => ({
       ...prevFormData,
       [e.target.id]: e.target.value,
     }));
   };
 
-  const handleSubmit = async (e) => {};
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      if (userCredential.user) {
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error("Wrong credentials");
+    }
+  };
   return (
     <section>
       <h1 className="text-3xl text-center mt-6 font-bold">Sign In</h1>
@@ -35,7 +53,7 @@ const SignIn = () => {
           />
         </div>
         <div className="w-full md:w-[67%] lg:w-[40%]  lg:ml-20">
-          <form onScroll={handleSubmit}>
+          <form onSubmit={handleSubmit}>
             <input
               className="w-full px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out mb-6"
               placeholder="Email address"
