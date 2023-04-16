@@ -10,8 +10,10 @@ const useAuthStatus = () => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setLoggedIn(true);
+        setLoading(false);
+      } else {
+        setLoggedIn(false);
       }
-      setLoading(false);
     });
   }, []);
   return { loggedIn, loading };

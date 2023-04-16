@@ -1,10 +1,12 @@
 import React from "react";
 import Img from "./Img";
 import { useLocation, useNavigate } from "react-router";
-
+import useAuthStatus from "../hooks/useAuthStatus";
 const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const { loggedIn } = useAuthStatus();
 
   function pathMatchRoute(route) {
     return route === location.pathname;
@@ -23,28 +25,31 @@ const Header = () => {
         <div>
           <ul className="flex space-x-10">
             <li
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMatchRoute("/") && "text-black border-b-red-500"
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 ${
+                pathMatchRoute("/") &&
+                "text-black border-b-[3px] border-b-red-500"
               }`}
               onClick={() => navigate("/")}
             >
               Home
             </li>
             <li
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMatchRoute("/offers") && "text-black border-b-red-500"
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 ${
+                pathMatchRoute("/offers") &&
+                "text-black  border-b-[3px] border-b-red-500"
               }`}
               onClick={() => navigate("/offers")}
             >
               Offers
             </li>
             <li
-              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent whitespace-nowrap ${
-                pathMatchRoute("/sign-in") && "text-black border-b-red-500"
+              className={`cursor-pointer py-3 text-sm font-semibold text-gray-400 whitespace-nowrap ${
+                pathMatchRoute("/sign-in") &&
+                "text-black border-b-[3px]  border-b-red-500"
               }`}
-              onClick={() => navigate("/sign-in")}
+              onClick={() => navigate(`${loggedIn ? "/profile" : "/sign-in"}`)}
             >
-              Sign In
+              {loggedIn ? "Profile" : "Sign In"}
             </li>
           </ul>
         </div>
