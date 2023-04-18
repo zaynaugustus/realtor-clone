@@ -92,6 +92,23 @@ const Profile = () => {
     fetchUserListings();
   }, [auth.currentUser.uid]);
 
+  const handleDelete = async (id) => {
+    try {
+      if (window.confirm("Are you sure you want to delete this listing?")) {
+        const docRef = doc(db, "listings", id);
+        await deleteDoc(docRef);
+        const newListings = listings.filter((listing) => listing.id !== id);
+        setListings(newListings);
+        toast.success("Listing deleted successfully");
+      }
+    } catch (error) {
+      toast.error("Could not delete the listing");
+    }
+  };
+  const handleEdit = (id) => {
+    navigate(`/edit-listing/${id}`);
+  };
+
   return (
     <>
       <section className="max-w-6xl mx-auto">
@@ -166,6 +183,12 @@ const Profile = () => {
                   key={listing.id}
                   id={listing.id}
                   listing={listing.data}
+                  handleDelete={() => {
+                    handleDelete(listing.id);
+                  }}
+                  handleEdit={() => {
+                    handleEdit(listing.id);
+                  }}
                 />
               ))}
             </ul>

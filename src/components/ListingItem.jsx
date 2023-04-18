@@ -1,18 +1,20 @@
 import { Link } from "react-router-dom";
 import Img from "../components/Img";
 // import Moment from "react-moment";
-import { MdLocationOn } from "react-icons/md";
+import { MdLocationOn, MdEdit } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
 
-const ListingItem = ({ id, listing }) => {
-  console.log(listing);
+const ListingItem = ({ id, listing, handleEdit, handleDelete }) => {
   return (
     <li className="relative bg-white flex flex-col hover:shadow-xl rounded-md transition-shadow duration-150 w-full sm:w-[32%] md:w-[24%] overflow-hidden ">
       <Link to={`/category/${listing.type}/${id}`} className="">
-        <Img
-          src={listing.imgUrls[0]}
-          alt={`${listing.name}`}
-          className="hover:scale-105 sm:h-[170px] object-contain"
-        />
+        <div className=" max-w-[350px] mx-auto">
+          <Img
+            src={listing.imgUrls[0]}
+            alt={`${listing.name}`}
+            className="hover:scale-105 sm:h-[170px] object-contain"
+          />
+        </div>
         {/* <Moment
           fromNow
           className="absolute top-2 left-2 bg-[#3377cc] text-white uppercase text-xs font-semibold rounded-md px-2 py-1 shadow-lg"
@@ -48,6 +50,18 @@ const ListingItem = ({ id, listing }) => {
           </div>
         </div>
       </Link>
+      {handleDelete && (
+        <FaTrash
+          className="absolute bottom-2 right-2 h-[14px] cursor-pointer text-red-500"
+          onClick={() => handleDelete(listing.id)}
+        />
+      )}
+      {handleEdit && (
+        <MdEdit
+          className="absolute bottom-2 right-7 h-4 cursor-pointer"
+          onClick={() => handleEdit(listing.id)}
+        />
+      )}
     </li>
   );
 };
