@@ -11,7 +11,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 const CreateListing = () => {
   const auth = getAuth();

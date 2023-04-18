@@ -1,6 +1,6 @@
 import React from "react";
 import Img from "./Img";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuthStatus from "../hooks/useAuthStatus";
 const Header = () => {
   const location = useLocation();

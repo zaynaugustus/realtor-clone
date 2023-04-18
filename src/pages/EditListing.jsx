@@ -18,7 +18,7 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 
 const EditListing = () => {
   const { listingId } = useParams();
