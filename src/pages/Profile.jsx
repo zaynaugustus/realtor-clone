@@ -14,7 +14,7 @@ import { db } from "../firebase";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FcHome } from "react-icons/fc";
-import ListingItem from "../components/listingItem";
+import ListingItem from "../components/ListingItem";
 
 const Profile = () => {
   const auth = getAuth();
@@ -160,7 +160,7 @@ const Profile = () => {
           <>
             <h2 className="text-2xl text-center font-semibold">My Listings</h2>
 
-            <ul>
+            <ul className="flex flex-wrap gap-[1%]">
               {listings.map((listing) => (
                 <ListingItem
                   key={listing.id}
