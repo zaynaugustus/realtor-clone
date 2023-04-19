@@ -177,7 +177,7 @@ const Profile = () => {
           <>
             <h2 className="text-2xl text-center font-semibold">My Listings</h2>
 
-            <ul className="flex flex-wrap gap-[1%]">
+            <ul className="flex flex-wrap justify-between">
               {listings.map((listing) => (
                 <ListingItem
                   key={listing.id}

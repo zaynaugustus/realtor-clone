@@ -12,7 +12,14 @@ import SwiperCore, {
   Pagination,
 } from "swiper";
 import "swiper/css/bundle";
-import { FaShare } from "react-icons/fa";
+import {
+  FaShare,
+  FaMapMarkerAlt,
+  FaBed,
+  FaBath,
+  FaParking,
+  FaChair,
+} from "react-icons/fa";
 
 export default function Listing() {
   const { listingId } = useParams();
@@ -81,6 +88,60 @@ export default function Listing() {
             Copied
           </span>
         )}
+      </div>
+
+      <div className="m-4 ">
+        <div className="" w-full>
+          <p>
+            {listing.name} -{" "}
+            {(listing.offer ? listing.discountedPrice : listing.regularPrice)
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </p>
+          <p className="flex items-center mt-6 mb-3 font-semibold">
+            <FaMapMarkerAlt className="text-green-700 mr-1" />
+            {listing.address}
+          </p>
+          <div className="flex justify-start items-center space-x-4 w-[75%]">
+            <p className="bg-red-800 w-full max-w-[200px] rounded-md p-1 text-white text-center font-semibold shadow-md">
+              {listing.type === "rent" ? "Rent" : "Sale"}
+            </p>
+            {listing.offer && (
+              <p className="w-full max-w-[200px] bg-green-800 rounded-md p-1 text-white text-center font-semibold shadow-md">
+                $
+                {Number(listing.regularPrice) - Number(listing.discountedPrice)}{" "}
+                discount
+              </p>
+            )}
+          </div>
+          <p className="mt-3 mb-3">
+            <span className="font-semibold">Description - </span>
+            {listing.description}
+          </p>
+          <ul className="flex items-center space-x-2 sm:space-x-10 text-sm font-semibold mb-6">
+            <li className="flex items-center whitespace-nowrap">
+              <FaBed className="text-lg mr-1" />
+              {Number(listing.bedrooms) > 1
+                ? `${listing.bedrooms} Beds`
+                : "1 Bed"}
+            </li>
+            <li className="flex items-center whitespace-nowrap">
+              <FaBath className="text-lg mr-1" />
+              {Number(listing.bathrooms) > 1
+                ? `${listing.bathrooms} Baths`
+                : "1 Bath"}
+            </li>
+            <li className="flex items-center whitespace-nowrap">
+              <FaParking className="text-lg mr-1" />
+              {listing.parking ? "Parking spot" : "No parking"}
+            </li>
+            <li className="flex items-center whitespace-nowrap">
+              <FaChair className="text-lg mr-1" />
+              {listing.furnished ? "Furnished" : "Not furnished"}
+            </li>
+          </ul>
+        </div>
+        <div></div>
       </div>
     </main>
   );

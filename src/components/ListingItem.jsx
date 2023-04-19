@@ -6,15 +6,13 @@ import { FaTrash } from "react-icons/fa";
 
 const ListingItem = ({ id, listing, handleEdit, handleDelete }) => {
   return (
-    <li className="relative bg-white flex flex-col hover:shadow-xl rounded-md transition-shadow duration-150 w-full sm:w-[32%] md:w-[24%] overflow-hidden ">
-      <Link to={`/category/${listing.type}/${id}`} className="">
-        <div className=" max-w-[350px] mx-auto">
-          <Img
-            src={listing.imgUrls[0]}
-            alt={`${listing.name}`}
-            className="hover:scale-105 sm:h-[170px] object-contain"
-          />
-        </div>
+    <li className="relative bg-white flex flex-col shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px] w-full sm:w-[46%] md:w-[30%] lg:w-[23%]">
+      <Link to={`/category/${listing.type}/${id}`}>
+        <Img
+          src={listing.imgUrls[0]}
+          alt={`${listing.name}`}
+          className="h-[170px] w-full object-cover"
+        />
         {/* <Moment
           fromNow
           className="absolute top-2 left-2 bg-[#3377cc] text-white uppercase text-xs font-semibold rounded-md px-2 py-1 shadow-lg"
