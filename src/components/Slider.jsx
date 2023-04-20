@@ -9,7 +9,7 @@ import SwiperCore, {
 import "swiper/css/bundle";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import { db } from "../firebase";
 
