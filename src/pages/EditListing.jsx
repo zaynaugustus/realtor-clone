@@ -93,7 +93,7 @@ const EditListing = () => {
       setLoading(false);
       toast.error("You can only upload a maximum of 6 images");
     } else {
-      const geolocation = { lat: 0, lng: 0 };
+      const geolocation = { lat: latitude, lng: longitude };
       if (geolocationEnabled) {
         const response = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${process.env.REACT_APP_GEOCODE_API_KEY}`
@@ -106,8 +106,9 @@ const EditListing = () => {
           return;
         }
 
-        geolocation.lat = data?.results[0]?.geometry?.location?.lat || 0;
-        geolocation.lng = data?.results[0]?.geometry?.location?.lng || 0;
+        geolocation.lat = data?.results[0]?.geometry?.location?.lat || latitude;
+        geolocation.lng =
+          data?.results[0]?.geometry?.location?.lng || longitude;
       }
 
       async function storeImage(image) {
