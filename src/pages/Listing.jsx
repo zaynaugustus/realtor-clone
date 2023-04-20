@@ -20,8 +20,12 @@ import {
   FaParking,
   FaChair,
 } from "react-icons/fa";
+import { getAuth } from "firebase/auth";
+import Contact from "../components/Contact";
 
 export default function Listing() {
+  const auth = getAuth();
+  const [contactLandlord, setContactLandlord] = useState(false);
   const { listingId } = useParams();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -46,18 +50,17 @@ export default function Listing() {
     }
     fetchListingFromFirebase();
   }, [listingId]);
-
   if (loading) {
     return <Spinner />;
   }
   return (
     <main>
       <Swiper
-        slidePerView={3}
+        slidesPerView={1}
         navigation
         pagination={{ type: "progressbar" }}
         effect="fade"
-        // modules={[EffectFade]}
+        modules={[EffectFade]}
         autoplay={{ delay: 3000 }}
       >
         {listing.imgUrls.map((url, index) => (
@@ -91,7 +94,7 @@ export default function Listing() {
       </div>
 
       <div className="m-4 ">
-        <div className="" w-full>
+        <div className=" w-full">
           <p>
             {listing.name} -{" "}
             {(listing.offer ? listing.discountedPrice : listing.regularPrice)
@@ -140,6 +143,19 @@ export default function Listing() {
               {listing.furnished ? "Furnished" : "Not furnished"}
             </li>
           </ul>
+          {listing.userRef === auth.currentUser?.uid && !contactLandlord && (
+            <div className="mt-6">
+              <button
+                onClick={() => setContactLandlord(true)}
+                className="px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg w-full text-center transition duration-150 ease-in-out "
+              >
+                Contact Landlord
+              </button>
+            </div>
+          )}
+          {contactLandlord && (
+            <Contact userId={listing.userRef} listing={listing} />
+          )}
         </div>
         <div></div>
       </div>
