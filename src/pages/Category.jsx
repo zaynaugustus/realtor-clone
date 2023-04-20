@@ -77,7 +77,10 @@ export default function Category() {
         Places for {categoryName === "rent" ? "Rent" : "Sale"}
       </h1>
       {listings.length == 0 ? (
-        <p className="text-center text-2xl mt-6">There are no current offers</p>
+        <p className="text-center text-2xl mt-6">
+          There are no current places for{" "}
+          {categoryName === "rent" ? "Rent" : "Sale"}
+        </p>
       ) : (
         <>
           <main>
