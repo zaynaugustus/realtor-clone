@@ -65,7 +65,7 @@ export default function Slider() {
           <div
             className="relative w-full overflow-hidden h-[300px] cursor-pointer"
             style={{
-              background: `url(${listing.imgUrls[0]}) top no-repeat`,
+              background: `url(${listing.imgUrls[0]}) center no-repeat`,
               backgroundSize: "cover",
             }}
           >

@@ -96,14 +96,14 @@ export default function Listing() {
 
       <div className="m-4 flex flex-col md:flex-row max-w-6xl lg:mx-auto p-4 rounded-lg shadow-lg bg-white lg:space-x-5 gap-5">
         <div className="w-full">
-          <p>
+          <p className="text-2xl font-bold mb-3 text-blue-900">
             {listing.name} - ${" "}
             {(listing.offer ? listing.discountedPrice : listing.regularPrice)
               .toString()
               .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             {listing.type === "rent" ? " / month" : ""}
           </p>
-          <p className="flex items-center mt-6 mb-3 font-semibold">
+          <p className="flex items-center mb-3 font-semibold">
             <FaMapMarkerAlt className="text-green-700 mr-1" />
             {listing.address}
           </p>

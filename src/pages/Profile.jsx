@@ -177,7 +177,7 @@ const Profile = () => {
           <>
             <h2 className="text-2xl text-center font-semibold">My Listings</h2>
 
-            <ul className="flex flex-wrap justify-between">
+            <ul className="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
               {listings.map((listing) => (
                 <ListingItem
                   key={listing.id}

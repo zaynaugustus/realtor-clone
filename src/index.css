@@ -18,3 +18,13 @@ body {
 .lazy-load-image-background {
     width: 100%;
 }
+
+/* chrome */
+html::-webkit-scrollbar {
+    display: none;
+}
+
+/* firefox */
+html {
+    scrollbar-width: none;
+}

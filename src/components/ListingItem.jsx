@@ -6,7 +6,8 @@ import { FaTrash } from "react-icons/fa";
 
 const ListingItem = ({ id, listing, handleEdit, handleDelete }) => {
   return (
-    <li className="relative bg-white flex flex-col shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-[10px] w-full sm:w-[46%] md:w-[30%] lg:w-[23%]">
+    <li className="relative bg-white flex flex-col shadow-md hover:shadow-xl rounded-md overflow-hidden transition-shadow duration-150 m-2">
+      {/*sm:w-[calc(50%-5px)] md:w-[calc(33%-6.34px)] lg:w-[calc(25%-5px)]*/}
       <Link to={`/category/${listing.type}/${id}`}>
         <Img
           src={listing.imgUrls[0]}
