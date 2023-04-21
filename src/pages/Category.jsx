@@ -13,6 +13,8 @@ import { db } from "../firebase";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
 import { useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import spinner from "../assets/svg/spinner.svg";
 
 export default function Category() {
   const { categoryName } = useParams();
@@ -59,6 +61,7 @@ export default function Category() {
         limit(4)
       );
       const querySnap = await getDocs(q);
+      console.log(querySnap);
       setLastDoc(querySnap.docs[querySnap.docs.length - 1]);
       const listings = [];
       querySnap.forEach((doc) => {
@@ -84,7 +87,21 @@ export default function Category() {
       ) : (
         <>
           <main>
-            <ul className="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <InfiniteScroll
+              className="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+              dataLength={listings.length || []}
+              next={fetchMoreListings}
+              hasMore={lastDoc}
+              loader={
+                <div className="col-span-full">
+                  <img
+                    src={spinner}
+                    alt="Loading..."
+                    className="h-16 mx-auto"
+                  />
+                </div>
+              }
+            >
               {listings.map((listing) => (
                 <ListingItem
                   key={listing.id}
@@ -92,9 +109,9 @@ export default function Category() {
                   listing={listing.data}
                 />
               ))}
-            </ul>
+            </InfiniteScroll>
           </main>
-          {lastDoc && (
+          {/* {lastDoc && (
             <div className="flex justify-center items-center">
               <button
                 onClick={fetchMoreListings}
@@ -103,7 +120,7 @@ export default function Category() {
                 Load more
               </button>
             </div>
-          )}
+          )} */}
         </>
       )}
     </div>

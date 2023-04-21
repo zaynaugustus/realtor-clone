@@ -69,7 +69,7 @@ export default function Listing() {
             <div
               className="w-full overflow-hidden h-[300px]"
               style={{
-                background: `url(${url}) top no-repeat`,
+                background: `url(${url}) center no-repeat`,
                 backgroundSize: "cover",
               }}
             />
