@@ -80,7 +80,7 @@ export default function Offers() {
         <>
           <main>
             <InfiniteScroll
-              className="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+              className="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
               dataLength={listings.length || []}
               next={fetchMoreListings}
               hasMore={lastDoc}
