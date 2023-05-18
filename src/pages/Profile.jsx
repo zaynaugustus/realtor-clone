@@ -157,18 +157,30 @@ const Profile = () => {
             </div>
           </form>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white text-sm uppercase px-7 py-3 font-medium rounded shadow-md hover:bg-blue-700 transition duration-150 ease-int-out hover:shadow-lg active:bg-blue-800"
-          >
-            <Link
-              to="/create-listing"
-              className="flex justify-center items-center gap-5"
+          <div className="flex gap-2">
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white text-sm uppercase px-7 py-3 font-medium rounded shadow-md hover:bg-blue-700 transition duration-150 ease-int-out hover:shadow-lg active:bg-blue-800"
             >
-              <FcHome className="text-3xl bg-red-200 rounded-full p-1 border-2" />{" "}
-              Sell or rent your home
-            </Link>
-          </button>
+              <Link
+                to="/create-listing"
+                className="flex justify-center items-center gap-5"
+              >
+                <FcHome className="text-3xl bg-red-200 rounded-full p-1 border-2" />{" "}
+                Sell or rent your home
+              </Link>
+            </button>
+            <button
+              className={`whitespace-nowrap bg-red-600 text-white text-center text-sm uppercase px-7 py-3 font-medium rounded shadow-md hover:bg-red-700 transition duration-150 ease-int-out hover:shadow-lg active:bg-red-800 ${
+                !loading &&
+                listings.length == 0 &&
+                "opacity-50 cursor-not-allowed"
+              }`}
+              disabled={!loading && listings.length == 0}
+            >
+              <Link to="https://movix-eta.vercel.app/">Surprise Me</Link>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -177,7 +189,7 @@ const Profile = () => {
           <>
             <h2 className="text-2xl text-center font-semibold">My Listings</h2>
 
-            <ul className="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            <ul className="sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {listings.map((listing) => (
                 <ListingItem
                   key={listing.id}
