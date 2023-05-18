@@ -18,8 +18,8 @@ const Header = () => {
         <div onClick={() => navigate("/")}>
           <Img
             src="https://1000logos.net/wp-content/uploads/2023/01/Airbnb-logo.png"
-            alt="realtor logo"
-            className="h-8 cursor-pointer"
+            alt="airbnb logo"
+            className="h-10 cursor-pointer"
           />
         </div>
         <div>
