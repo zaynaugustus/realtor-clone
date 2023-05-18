@@ -178,7 +178,7 @@ const Profile = () => {
               }`}
               disabled={!loading && listings.length == 0}
             >
-              <Link to="https://movix-eta.vercel.app/">Surprise Me</Link>
+              <Link to="https://enchanting-starburst-8b190b.netlify.app/">Surprise Me</Link>
             </button>
           </div>
         </div>
