@@ -17,9 +17,9 @@ const Header = () => {
       <header className="flex justify-between items-center px-3 max-w-6xl mx-auto">
         <div onClick={() => navigate("/")}>
           <Img
-            src="https://1000logos.net/wp-content/uploads/2023/01/Airbnb-logo.png"
-            alt="airbnb logo"
-            className="h-10 cursor-pointer"
+            src="https://static.rdc.moveaws.com/images/logos/rdc-logo-default.svg"
+            alt="realtor logo"
+            className="h-5 cursor-pointer"
           />
         </div>
         <div>
